@@ -1,5 +1,6 @@
 import React from "react";
-import FormInput from "../form-input/FormInput.js"
+import FormInput from "../form-input/FormInput.js";
+import CustomButton from "../custom-button/CustomButton.js"
 import "./sign-in.styles.scss";
 
 class SignIn extends React.Component {
@@ -12,17 +13,15 @@ class SignIn extends React.Component {
     };
   }
 
-
-   submitHandler = (e) => {
-       e.preventDefault()
-       this.setState({email: "", password: ""})
-  }
+  submitHandler = (e) => {
+    e.preventDefault();
+    this.setState({ email: "", password: "" });
+  };
 
   changeHandler = (e) => {
-       const {value, name} = e.target;
-       this.setState({[name]: value})
-
-  }
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
+  };
 
   render() {
     return (
@@ -32,12 +31,12 @@ class SignIn extends React.Component {
 
         <form onSubmit={this.submitHandler}>
           <FormInput
-          name="email" 
-          type="email" 
-          changeHandler={this.changeHandler}
-          value={this.state.email} 
-          label="email"
-          required 
+            name="email"
+            type="email"
+            changeHandler={this.changeHandler}
+            value={this.state.email}
+            label="email"
+            required
           />
           <FormInput
             name="password"
@@ -47,11 +46,11 @@ class SignIn extends React.Component {
             label="password"
             required
           />
-          <input type="submit" value="Submit form" />
+          <CustomButton type="submit">Sign In</CustomButton> 
         </form>
       </div>
     );
   }
 }
 
-export default SignIn
+export default SignIn;
