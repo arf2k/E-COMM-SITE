@@ -31,12 +31,10 @@ componentWillUnmount() {
   this.unsubscribeFromAuth()
 }
 
-
-
   render(){
   return (
     <div>
-      <Header/>
+      <Header currentUser={this.state.currentUser}/>
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/shop" component={Shop} />
