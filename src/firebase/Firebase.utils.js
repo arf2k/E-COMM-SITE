@@ -12,6 +12,35 @@ const config = {
      measurementId: "G-8CZ3WJ90V7"
    }
 
+   export const createUserProfileDocument = async (userAuth, additionalData ) => {
+     if(!userAuth) return;
+
+     const userRef = firestore.doc(`users/${userAuth.uid}`)
+
+     const snapShot = await userRef.get();
+    
+     if(!snapShot.exists) {
+          const { displayName, email } = userAuth;
+          const createdAt = new Date();
+
+          try {
+               await userRef.set({
+                    displayName,
+                    email,
+                    createdAt,
+                    ...additionalData
+               })
+
+          } catch (error){
+               console.log('error creating user', error.message)
+          }
+     }
+     return userRef
+
+}
+//    API request
+// only perform save to db if not null- check if getting back valid obj so if null there's no userauth
+
 
    firebase.initializeApp(config)
 
@@ -22,5 +51,8 @@ const config = {
    provider.setCustomParameters({prompt: 'select_account'});
    export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
+   
+  
+   
+   
    export default firebase;
-    

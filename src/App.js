@@ -6,7 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import Shop from "./pages/shop/Shop.js";
 import Header from "./components/header/Header.js";
 import SignInSignUp from "./pages/sign-in-sign-up/SignInSignUp.js"
-import { auth } from './firebase/Firebase.utils.js'
+import { auth, createUserProfileDocument } from './firebase/Firebase.utils.js'
 
 class App extends React.Component {
   constructor(){
@@ -20,9 +20,8 @@ class App extends React.Component {
   unsubscribefromAuth = null
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({currentUser: user})
-      console.log(this.state.currentUser)
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
+      createUserProfileDocument(user) 
     })
   }
   // open subscription between app & firebase app- when changes occur on firebase related to this app firebase sends message saying user changed - they'll give us this user so we dont have to manually check if state has changed as long as app component is mounted - also have to close subscritpions when it unmounts so no memory leaks 
