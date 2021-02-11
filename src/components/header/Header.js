@@ -5,6 +5,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 // ReactComponent import name is syntax telling create react app to render as svg and not filename
 import { auth } from '../../firebase/Firebase.utils.js'
 import { connect } from 'react-redux';
+import CartIcon from "../cart-icon/CartIcon.js"
 
 const Header = ({ currentUser }) => {
   return (
@@ -27,6 +28,7 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         }
+         <CartIcon/>
       </div>
     </div>
   );
