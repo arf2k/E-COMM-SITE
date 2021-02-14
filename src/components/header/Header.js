@@ -2,11 +2,13 @@ import React from "react";
 import "./header.styles.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-// ReactComponent import name is syntax telling create react app to render as svg and not filename
 import { auth } from "../../firebase/Firebase.utils.js";
 import { connect } from "react-redux";
 import CartIcon from "../cart-icon/CartIcon.js";
 import CartDropdown from "../cart-dropdown/CartDropdown.js";
+import { createStructuredSelector } from "reselect";
+import { selectCartHidden } from "../../redux/cart/cartSelectors.js";
+import { selectCurrentUser } from "../../redux/user/userSelector.js";
 
 const Header = ({ currentUser, hidden }) => {
   return (
@@ -32,15 +34,14 @@ const Header = ({ currentUser, hidden }) => {
         )}
         <CartIcon />
       </div>
-      {hidden ? null :  <CartDropdown />}
-     
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
-const mapStateToProps = ({ user: {currentUser}, cart: {hidden}}) => ({
-  currentUser,
-  hidden
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);
