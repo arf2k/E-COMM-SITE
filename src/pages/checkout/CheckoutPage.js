@@ -7,8 +7,10 @@ import {
   selectCartTotal,
 } from "../../redux/cart/cartSelectors.js";
 import CheckoutItem from "../../components/checkout-item/CheckoutItem.js";
+import StripeButton from "../../components/stripe-button/StripeButton.js"
 
 const CheckoutPage = ({ cartItems, total }) => (
+
   <div className="checkout-page">
     <div className="checkout-header">
       <div className="header-block">
@@ -30,10 +32,19 @@ const CheckoutPage = ({ cartItems, total }) => (
     {cartItems.map((cartItem) => (
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
     ))}
-    <div className="total">
-      <span>TOTAL:${total}</span>
+    <div className="total">TOTAL:${total}</div>
+    <div className="test-warning">
+  
+    *Please use the following test credit card for payments* 
+    <br />
+    4242 4242 4242 4242 --Exp: 01/22 -- CW: 12
     </div>
-  </div>
+      <StripeButton price={total}/>
+    </div>
+
+    
+
+  
 );
 
 const mapStateToProps = createStructuredSelector({
