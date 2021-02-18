@@ -41,10 +41,6 @@ const CheckoutPage = ({ cartItems, total }) => (
     </div>
       <StripeButton price={total}/>
     </div>
-
-    
-
-  
 );
 
 const mapStateToProps = createStructuredSelector({
