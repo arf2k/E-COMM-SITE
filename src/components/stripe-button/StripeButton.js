@@ -2,12 +2,12 @@ import React from "react";
 import StripeCheckout from 'react-stripe-checkout';
 
 const StripeButton = ({ price }) => {
- const priceForStripe = price * 100
+ const stripePrice = price * 100
  const publishableKey = "pk_test_51IMIyLAVI7YMiFvEzuSzpzIpqCEe8VX93X49Nk8AnmVaHeSoePJQqcJBWXBeph0spqOUoVg1vf1sUwIZv04MPMP900L5XVcGC8"
 
 const onToken = token => {
-     console.log(token)
-     alert("Payment Successful")
+    console.log(token)
+     alert("Payment Complete")
 }
 
  return (
@@ -17,7 +17,7 @@ const onToken = token => {
      billingAddress
      shippingAddress
      description={`Your total is $${price}`}
-     amount={priceForStripe}
+     amount={stripePrice}
      panelLabel="Pay Now"
      token={onToken}
      stripeKey={publishableKey} />
