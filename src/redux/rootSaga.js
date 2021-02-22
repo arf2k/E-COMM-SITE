@@ -3,5 +3,7 @@ import { fetchCollectionsStart } from './shop/shopSagas';
 
 
 export default function* rootSaga() {
-     yield all ([call (fetchCollectionsStart)])
+     yield all ([
+          call (fetchCollectionsStart)
+     ])
 }
