@@ -12,13 +12,13 @@ const onToken = token => {
 
  return (
      <StripeCheckout 
-     label="Pay Now"
+     label="Buy Now"
      name="Foreman Ecomm"
      billingAddress
      shippingAddress
      description={`Your total is $${price}`}
      amount={stripePrice}
-     panelLabel="Pay Now"
+     panelLabel="Buy Now"
      token={onToken}
      stripeKey={publishableKey} />
  )
