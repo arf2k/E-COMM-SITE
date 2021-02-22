@@ -3,11 +3,11 @@ import CollectionsOverview from "../../components/collections-overview/Collectio
 import { Route } from "react-router-dom";
 import Collection from "../collection/Collection.js";
 import { connect } from "react-redux";
-import {
-  firestore,
-  convertCollectionsSnapshotToMap,
-} from "../../firebase/Firebase.utils";
-import { updateCollections } from "../../redux/shop/shopActions.js";
+// import {
+//   firestore,
+//   convertCollectionsSnapshotToMap,
+// } from "../../firebase/Firebase.utils";
+import { fetchCollectionsStart, fetchCollectionsStartAsync } from "../../redux/shop/shopActions"
 import WithSpinner from "../../components/with-spinner/WithSpinner.js"
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
@@ -20,14 +20,8 @@ state = {
     loading: true
 }
   componentDidMount() {
-    const { updateCollections } = this.props;
-    const collectionRef = firestore.collection("collections");
-
-    collectionRef.get().then((snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      updateCollections(collectionsMap);
-      this.setState({ loading: false});
-    });
+    const { fetchCollectionsStart } = this.props;
+    fetchCollectionsStart()
   }
 
   render() {
@@ -43,8 +37,7 @@ state = {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updateCollections: (collectionsMap) =>
-    dispatch(updateCollections(collectionsMap)),
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 });
 
 export default connect(null, mapDispatchToProps)(Shop);
