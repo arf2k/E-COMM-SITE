@@ -1,20 +1,16 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchCollectionsStart} from "../../redux/shop/shopActions"
+import { fetchCollectionsStart } from "../../redux/shop/shopActions"
 
 
 import CollectionsOverviewContainer from "../../components/collections-overview/CollectionsOverviewContainer";
-import { CollectionPageContainer } from "../collection/CollectionStyles.js";
+import CollectionContainer from "../collection/CollectionContainer";
 
 
 
 class Shop extends React.Component {
-    // unsubscribeFromSnapshot = null;
 
-// state = {
-//     loading: true
-// }
   componentDidMount() {
     const { fetchCollectionsStart } = this.props;
     fetchCollectionsStart()
@@ -25,7 +21,7 @@ class Shop extends React.Component {
     return (
       <div className="shop-page">
         <Route exact path={`${match.path}`} component={CollectionsOverviewContainer}/>
-        <Route path={`${match.path}/:collectionId`} component={CollectionPageContainer} />
+        <Route path={`${match.path}/:collectionId`} component={CollectionContainer} />
       </div>
     );
   }
