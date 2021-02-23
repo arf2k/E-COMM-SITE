@@ -1,9 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import FormInput from "../form-input/FormInput.js";
 import CustomButton from "../custom-button/CustomButton.js";
 import "./sign-in.styles.scss";
 
-import { auth, signInWithGoogle } from "../../firebase/Firebase.utils.js";
+import { auth } from "../../firebase/Firebase.utils.js";
+import { googleSignInStart } from "../../redux/user/userActions";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -15,15 +17,15 @@ class SignIn extends React.Component {
     };
   }
 
-  submitHandler = async e => {
+  submitHandler = async (e) => {
     e.preventDefault();
-    const {email, password} = this.state;
+    const { email, password } = this.state;
 
     try {
-      await auth.signInWithEmailAndPassword(email, password)
+      await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: "", password: "" });
-    } catch (error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -33,6 +35,7 @@ class SignIn extends React.Component {
   };
 
   render() {
+    const { googleSignInStart } = this.props;
     return (
       <div className="sign-in">
         <h2>I already have an account</h2>
@@ -57,7 +60,11 @@ class SignIn extends React.Component {
           />
           <div className="buttons">
             <CustomButton type="submit">Sign In</CustomButton>
-            <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>
+            <CustomButton
+              type="button"
+              onClick={googleSignInStart}
+              isGoogleSignIn
+            >
               Sign in with Google
             </CustomButton>
           </div>
@@ -67,4 +74,8 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);

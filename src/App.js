@@ -18,26 +18,9 @@ class App extends React.Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
 
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      } else {
-        setCurrentUser(userAuth);
-      }
-    });
   }
-  // open subscription between app & firebase app- when changes occur on firebase related to this app firebase sends message saying user changed - they'll give us this user so we dont have to manually check if state has changed as long as app component is mounted - also have to close subscritpions when it unmounts so no memory leaks
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+ 
 
   render() {
     return (
