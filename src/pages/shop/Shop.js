@@ -10,11 +10,11 @@ import { CollectionPageContainer } from "../collection/CollectionStyles.js";
 
 
 class Shop extends React.Component {
-    unsubscribeFromSnapshot = null;
+    // unsubscribeFromSnapshot = null;
 
-state = {
-    loading: true
-}
+// state = {
+//     loading: true
+// }
   componentDidMount() {
     const { fetchCollectionsStart } = this.props;
     fetchCollectionsStart()
