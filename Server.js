@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors")
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
@@ -12,18 +13,23 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cors())
+
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
   app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "clien/build", "index.html"));
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
 
-app.listen(port, (error) => {
+app.listen(port, error => {
   if (error) throw error;
-  console.log("Server running on port" + port);
+  console.log("Server running on port " + port)
 });
+
+
 
 app.post("/payment", (req, res) => {
   const body = {
@@ -40,3 +46,4 @@ app.post("/payment", (req, res) => {
     }
   });
 });
+
