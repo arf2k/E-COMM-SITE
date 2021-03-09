@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { compose } from "redux"
 
 import { selectIsCollectionFetching } from '../../redux/shop/shopSelectors';
 import WithSpinner from '../with-spinner/WithSpinner';
