@@ -5,4 +5,6 @@ A mock online clothing store with real-world auth and payment.
 -      Node.js backend to allow complete Stripe functionality
 
 Video Demo: 
-https://youtu.be/P5pu_8mzUcI
+<br> [![Ecomm thumbnail](http://img.youtube.com/vi/P5pu_8mzUcI/0.jpg)](http://www.youtube.com/watch?v=P5pu_8mzUcI) </br>
+
+
