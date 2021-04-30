@@ -3,3 +3,6 @@ A mock online clothing store with real-world auth and payment.
 -      Saved inventory with Firestore database. Authenticated users and allowed Google SignIn through Google Firebase.                        	
 -      Utilized Stripe API for card verification and payment authorization. 
 -      Node.js backend to allow complete Stripe functionality
+
+Video Demo: 
+https://youtu.be/P5pu_8mzUcI
